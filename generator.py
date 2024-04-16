@@ -30,4 +30,5 @@ class PDF(FPDF):
 
 pdf = PDF()
 pdf.print_chapter(1, "Getting Started with Programming", "para.txt")
+pdf.print_chapter(2, "Which Programming Language to Learn", "para.txt")
 pdf.output("sample2.pdf")
