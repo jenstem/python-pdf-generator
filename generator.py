@@ -3,25 +3,24 @@ from fpdf import FPDF
 
 class PDF(FPDF):
     def header(self):
-        self.image("logo.jpg", 10, 8, 33)
-        self.set_font("Arial", "B", 16)
-        self.cell(80)
-        self.cell(40, 10, "Hello World!", border = 1, align = "C")
-        self.ln(40)
+        pass
 
     def footer(self):
-        self.set_y(-15)
-        self.set_font("Arial", "I", 16)
-        self.cell(0, 10, f"Page {self.page_no()}/{{nb}}", align = "C")
+        pass
+
+    def chapter_title(self):
+        pass
+
+    def chapter_body(self, filepath):
+        with open(filepath, "rb") as fh:
+            txt = fh.read().decode("latin-1")
+            print(txt)
+            pass
+
+    def print_chapter(self, filepath):
+        self.chapter_body(filepath)
+        pass
 
 
 pdf = PDF()
-
-
-pdf.add_page()
-pdf.set_font("Arial", "B", 16)
-
-for i in range(1, 41):
-    pdf.cell(0, 10, f"Printing line number {i}", new_x = "LMARGIN", new_y = "NEXT")
-
-pdf.output("sample.pdf")
+pdf.print_chapter("para.txt")
