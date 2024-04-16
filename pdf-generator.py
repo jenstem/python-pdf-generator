@@ -1,4 +1,5 @@
 from fpdf import FPDF
+from fpdf.fonts import FontFace
 import csv
 
 
@@ -11,7 +12,20 @@ pdf.set_font("Arial", size=14)
 
 
 pdf.add_page()
-with pdf.table() as table:
+pdf.set_draw_color(255, 0, 0)
+pdf.set_line_width(0.3)
+headings_style = FontFace(emphasis="BOLD", color=255, fill_color=(255, 100, 0))
+
+with pdf.table(
+    borders_layout="NO_HORIZONTAL_LINES",
+    cell_fill_color=(224, 235, 255),
+    col_widths=(42, 39, 35, 42),
+    line_height=6,
+    headings_style=headings_style,
+    text_align=("LEFT", "CENTER", "RIGHT", "RIGHT"),
+    width=160,
+
+) as table:
     for data_row in data:
         row = table.row()
         for data_cell in data_row:
