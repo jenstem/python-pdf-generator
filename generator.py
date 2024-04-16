@@ -3,7 +3,15 @@ from fpdf import FPDF
 
 class PDF(FPDF):
     def header(self):
-        pass
+        self.set_font("Arial", "B", 18)
+        width = self.get_string_width(self.title) + 6
+        self.set_x((210 - width) / 2)
+        self.set_draw_color(0, 80, 180)
+        self.set_fill_color(230, 230, 0)
+        self.set_text_color(220, 50, 50)
+        self.line_width = 1
+        self.cell(width, 9, self.title, new_x="LMARGIN", new_y="NEXT", align="C", fill=True)
+        self.ln(10)
 
     def footer(self):
         pass
@@ -29,6 +37,8 @@ class PDF(FPDF):
 
 
 pdf = PDF()
+pdf.set_title("Programming Guide")
+pdf.set_author("John Doe")
 pdf.print_chapter(1, "Getting Started with Programming", "para.txt")
 pdf.print_chapter(2, "Which Programming Language to Learn", "para.txt")
 pdf.output("sample2.pdf")
