@@ -1,1 +1,1 @@
-# python-pdf-generator
+# Python PDF Generator
