@@ -1,7 +1,12 @@
 from fpdf import FPDF
 
 
-pdf = FPDF()
+class PDF(FPDF):
+    def header(self):
+        self.image("logo.jpg", 10, 8, 33)
+
+
+pdf = PDF()
 
 
 pdf.add_page()
