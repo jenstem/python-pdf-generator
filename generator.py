@@ -9,12 +9,15 @@ class PDF(FPDF):
         self.set_draw_color(0, 80, 180)
         self.set_fill_color(230, 230, 0)
         self.set_text_color(220, 50, 50)
-        self.line_width = 1
+        self.set_line_width = 1
         self.cell(width, 9, self.title, new_x="LMARGIN", new_y="NEXT", align="C", fill=True)
         self.ln(10)
 
     def footer(self):
-        pass
+        self.set_y(-15)
+        self.set_font("Arial", "I", 12)
+        self.set_text_color(128)
+        self.cell(0, 10, f"Page {self.page_no()}", align="C")
 
     def chapter_title(self, num, label):
         self.set_font("Arial", "B", 16)
