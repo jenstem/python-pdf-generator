@@ -14,13 +14,18 @@ class PDF(FPDF):
     def chapter_body(self, filepath):
         with open(filepath, "rb") as fh:
             txt = fh.read().decode("latin-1")
-            print(txt)
-            pass
+        self.set_font("Arial", size=12)
+        self.multi_cell(0, 5, txt)
+        self.ln()
+        self.set_font(style = "I")
+        self.cell(0, 5, "(End of excerpt)")
 
     def print_chapter(self, filepath):
+        self.add_page()
         self.chapter_body(filepath)
         pass
 
 
 pdf = PDF()
 pdf.print_chapter("para.txt")
+pdf.output("sample2.pdf")
