@@ -44,4 +44,24 @@ pdf.set_title("Programming Guide")
 pdf.set_author("John Doe")
 pdf.print_chapter(1, "Getting Started with Programming", "para.txt")
 pdf.print_chapter(2, "Which Programming Language to Learn", "para.txt")
-pdf.output("sample2.pdf")
+
+pdf.add_page()
+pdf.set_font("Arial", size=20)
+pdf.image("logo.jpg", 10, 10, 50, 0, "", "https://www.google.com")
+pdf.set_left_margin(60)
+pdf.write_html("<h1>Links</h1>")
+pdf.write_html(""" <br>
+                <p> External Link - will take you to Google.com </p>
+                <a href="https://www.google.com">Link to Google</a>
+                <br>
+                <br>
+                <p> Internal Link - will take you to page 2 </p>
+                <br>
+                """)
+pdf.write(5, "To find out what's new in tutorial, click ")
+pdf.set_font(style="U")
+link = pdf.add_link(page=2)
+pdf.write(5, "here", link)
+
+
+pdf.output("new-pdf.pdf")
