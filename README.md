@@ -61,7 +61,7 @@ Run the app:
 <a id='screenshots'></a>
 ## Screenshots/Gifs:
 
-<img src="https://github.com/jenstem/csv-to-pdf-converter/blob/main/converter.gif" width=1000>
+<img src="https://github.com/jenstem/python-pdf-generator/blob/main/pdf-generator.gif" width=1000>
 *This is a GIF of the app*
 
 <a id='contact'></a>
