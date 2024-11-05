@@ -21,6 +21,7 @@ class PDF(FPDF):
         self.cell(width, 9, self.title, new_x="LMARGIN", new_y="NEXT", align="C", fill=True)
         self.ln(10)
 
+    
     def footer(self):
         """
         Define the footer for the PDF document.
@@ -31,6 +32,7 @@ class PDF(FPDF):
         self.set_text_color(128)
         self.cell(0, 10, f"Page {self.page_no()}", align="C")
 
+    
     def chapter_title(self, num, label):
         """
         Create a chapter title.
@@ -43,6 +45,7 @@ class PDF(FPDF):
         self.set_fill_color(200, 220, 255)
         self.cell(0, 6, f"Chapter {num} : {label}", new_x = "LMARGIN", new_y = "NEXT", align = "L", fill = True)
 
+    
     def chapter_body(self, filepath):
         """
         Read and format the body of the chapter from a file.
@@ -58,6 +61,7 @@ class PDF(FPDF):
         self.set_font(style = "I")
         self.cell(0, 5, "(End of excerpt)")
 
+    
     def print_chapter(self, num, title, filepath):
         """
         Print a chpater in the PDF document.
