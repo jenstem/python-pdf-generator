@@ -2,7 +2,15 @@ from fpdf import FPDF
 
 
 class PDF(FPDF):
+    """
+    Custom PDF class that extends FPDF to create structured PDF documents
+    with headers, footers, and chapters.
+    """
     def header(self):
+        """
+        Define the header for the PDF document.
+        Sets the font, colors, and layout for the title.
+        """
         self.set_font("Arial", "B", 18)
         width = self.get_string_width(self.title) + 6
         self.set_x((210 - width) / 2)
@@ -14,17 +22,34 @@ class PDF(FPDF):
         self.ln(10)
 
     def footer(self):
+        """
+        Define the footer for the PDF document.
+        Sets the page number at the bottom center of the page.
+        """
         self.set_y(-15)
         self.set_font("Arial", "I", 12)
         self.set_text_color(128)
         self.cell(0, 10, f"Page {self.page_no()}", align="C")
 
     def chapter_title(self, num, label):
+        """
+        Create a chapter title.
+
+        Args:
+            num (int): Chapter number.
+            label (str): Chapter title.
+        """
         self.set_font("Arial", "B", 16)
         self.set_fill_color(200, 220, 255)
         self.cell(0, 6, f"Chapter {num} : {label}", new_x = "LMARGIN", new_y = "NEXT", align = "L", fill = True)
 
     def chapter_body(self, filepath):
+        """
+        Read and format the body of the chapter from a file.
+
+        Args:
+            filepath (str): Path to the text file containing chapter content.
+        """
         with open(filepath, "rb") as fh:
             txt = fh.read().decode("latin-1")
         self.set_font("Arial", size=12)
@@ -34,6 +59,14 @@ class PDF(FPDF):
         self.cell(0, 5, "(End of excerpt)")
 
     def print_chapter(self, num, title, filepath):
+        """
+        Print a chpater in the PDF document.
+
+        Args:
+            num (int): Chapter number.
+            title (str): Chapter title.
+            filepath (str): Path to the text file containing chapter content.
+        """
         self.add_page()
         self.chapter_title(num, title)
         self.chapter_body(filepath)
